@@ -73,7 +73,7 @@ let acquire_act unit : action =
 let get_balance (id : id) : int = 
   match List.filter (fun x -> x.id = id) !database with 
   | [] -> raise Not_found
-  | hd :: tail  -> hd.balance  
+  | hd :: _tail  -> hd.balance  
 ;;
 
 (* get_name id -- Returns the name associated with the customer
@@ -81,7 +81,7 @@ let get_balance (id : id) : int =
 let get_name (id : id) : string = 
   match List.filter (fun x -> x.id = id) !database with 
   | [] -> raise Not_found
-  | hd :: tail  -> hd.name  
+  | hd :: _tail  -> hd.name  
 ;;
 (* update_balance id amount -- Modifies the balance of the customer
    account with the given id,setting it to the given amount. *)
