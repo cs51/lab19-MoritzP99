@@ -35,7 +35,7 @@ let initialize (accounts : account_spec list) : unit =
 (* acquire_id () -- Requests from the ATM customer and returns an id
    (akin to entering one's ATM card), by prompting for an id number
    and reading an id from stdin. *)
-let acquire_id : id = 
+let acquire_id () : id = 
     Printf.printf("Enter customer id: ");
      let id = Stdlib.read_int () in 
      id ;;
@@ -85,10 +85,10 @@ let get_name (id : id) : string =
 ;;
 (* update_balance id amount -- Modifies the balance of the customer
    account with the given id,setting it to the given amount. *)
-let update_balance (id : id) (bal : int) : unit =
+let update_balance (id : id) (balance : int) : unit =
   match List.filter (fun x -> x.id = id) !database with 
     | [] -> raise Not_found
-    | hd :: tail  -> hd.balance <- bal
+    | hd :: tail  -> hd.balance <- balance
   ;;
 (*....................................................................
   Presenting information and cash to the customer
@@ -98,7 +98,7 @@ let update_balance (id : id) (bal : int) : unit =
    given message followed by a newline. *)
 
 let present_message (message: string) : unit = 
-    (Printf.printf "%s\n" message) ;; 
+    Printf.printf "%s\n" message ;; 
 
 (* deliver_cash amount -- Dispenses the given amount of cash to the
    customer (really just prints to stdout a message to that
