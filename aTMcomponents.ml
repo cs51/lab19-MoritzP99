@@ -49,7 +49,7 @@ let acquire_amount () : int =
      
 (* acquire_act () -- Requests from the user and returns an action to
    be performed, as a value of type action *)
-let acquire_act unit : action =
+let acquire_act () : action =
      Printf.printf("(B) Balance (-) Withdraw (+) Deposit (=) Done (X) Exit: ");
      let action = Stdlib.read_line () in 
      match action with
