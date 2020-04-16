@@ -15,7 +15,7 @@ type action =
 
 (* A specification of a customer name and initial balance for
    initializing the account database *)
-type account_spec = {name : string; id : id; mutable balance : int} ;;
+type account_spec = {name : string; id : id; balance : int} ;;
 
 
 (* initialize accts -- Establishes a database of accounts, each with a
@@ -85,10 +85,9 @@ let get_name (id : id) : string =
 ;;
 (* update_balance id amount -- Modifies the balance of the customer
    account with the given id,setting it to the given amount. *)
-let update_balance (id : id) (balance : int) : unit =
-  match List.filter (fun x -> x.id = id) !database with 
-    | [] -> raise Not_found
-    | hd :: tail  -> hd.balance <- balance
+let update_balance (id : id) (new_balance : int) : unit =
+   let filtered_db = List.filter (fun x -> x.id <> id) !database in 
+   database := filtered_db @ [{name = (get_name id); id = id; balance = new_balance}];;
   ;;
 (*....................................................................
   Presenting information and cash to the customer
