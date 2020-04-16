@@ -85,8 +85,8 @@ let get_name (id : id) : string =
 ;;
 (* update_balance id amount -- Modifies the balance of the customer
    account with the given id,setting it to the given amount. *)
-let update_balance (n : id) (bal : int) : unit =
-  match List.filter (fun x -> x.id = n) !database with 
+let update_balance (id : id) (bal : int) : unit =
+  match List.filter (fun x -> x.id = id) !database with 
     | [] -> raise Not_found
     | hd :: tail  -> hd.balance <- bal
   ;;
