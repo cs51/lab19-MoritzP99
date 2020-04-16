@@ -35,8 +35,6 @@ let initialize (accounts : account_spec list) : unit =
 (* acquire_id () -- Requests from the ATM customer and returns an id
    (akin to entering one's ATM card), by prompting for an id number
    and reading an id from stdin. *)
-
-
 let acquire_id : id = 
     Printf.printf("Enter customer id: ");
      let id = Stdlib.read_int () in 
